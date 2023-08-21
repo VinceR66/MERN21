@@ -23,7 +23,7 @@ const startApolloServer = async () => {
   app.use(express.json());
 
   // Comment out this code once you have built out queries and mutations in the client folder
-  //app.use(routes);
+  app.use(routes);
 
   if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/dist')));
