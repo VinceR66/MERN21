@@ -32,19 +32,24 @@ const SignupForm = () => {
       event.stopPropagation();
     }
 
-    //34
     try {
-      const response = await createUser(userFormData);
+      const { data } = await createUser({
+        variables: { ...userFormData }
+      });
+      console.log(data);
 
-      if (!response.ok) {
-        throw new Error('something went wrong!');
-      }
+      //try {
+      //const response = await createUser(userFormData);
 
-      const { token, user } = await response.json();
-      //37
+      //if (!response.ok) {
+      //throw new Error('something went wrong!');
+      //}
+
+      //const { token, user } = await response.json();
 
 
-      Auth.login(token);
+
+      Auth.login(data.addUser.token);
     } catch (err) {
       console.error(err);
       setShowAlert(true);
