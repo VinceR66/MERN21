@@ -39,7 +39,7 @@ const SavedBooks = () => {
     }
 
 
-    // 32
+    // 3//2
     try {
       const response = await deleteBook(bookId, token);
 
@@ -48,7 +48,7 @@ const SavedBooks = () => {
       }
 
       const updatedUser = await response.json();
-      //43
+      //4//3
 
 
       // upon success, remove book's id from localStorage
