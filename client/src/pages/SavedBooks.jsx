@@ -8,16 +8,26 @@ import {
 } from 'react-bootstrap';
 
 
-import { useQuery } from "@apollo/react-hooks";
-import { getMe, deleteBook } from '../utils/API';
+import { useQuery, useMutation } from "@apollo/react-hooks";
+import { GET_ME } from '../utils/queries';
+import { REMOVE_BOOK } from '../utils/mutations';
 import Auth from '../utils/auth';
 import { removeBookId } from '../utils/localStorage';
-import { GET_ME } from '../utils/queries';
+
+//import { getMe, deleteBook } from '../utils/API';
 
 const SavedBooks = () => {
-  const { data, loading } = useQuery(GET_ME)
+  const { data, loading } = useQuery(GET_ME);
   const [deleteBook] = useMutation(REMOVE_BOOK);
-  const userData = data?.me || {}
+  const userData = data?.me || {};
+
+  if (!userData?.username) {
+    return (
+      <h4>
+        You need to be logged in to see this page. Use the navigation links above to sign up or log in!
+      </h4>
+    );
+  }
 
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
@@ -28,6 +38,8 @@ const SavedBooks = () => {
       return false;
     }
 
+
+    // 32
     try {
       const response = await deleteBook(bookId, token);
 
@@ -36,6 +48,8 @@ const SavedBooks = () => {
       }
 
       const updatedUser = await response.json();
+      //43
+
 
       // upon success, remove book's id from localStorage
       removeBookId(bookId);
