@@ -5,8 +5,10 @@
 
 _______________________________________________________________________________________________________________________________
 ## Description:
-This is a tech blog application used to inform and comment on tech issues / applications. 
-
+This is a web application used to search and save favorite books. 
+_______________________________________________________________________________________________________________________________
+## Screenshot
+![Screenshot](./googleBooks.png)
 _______________________________________________________________________________________________________________________________
 ## Installation:
 App was created with Mongo, Express.js, React, Node and Graphql.
